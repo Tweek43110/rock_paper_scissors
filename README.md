@@ -1,0 +1,1 @@
+A recreation of the classic rock, paper, scissors game with javascript. Part of The Odin Project.
