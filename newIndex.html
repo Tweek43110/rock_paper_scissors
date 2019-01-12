@@ -94,12 +94,15 @@
             function scoreTracker() {
                 //Displays current score or round win message
                 if (playerScore === 5) {
-                alert("Congatulations, you beat the computer! Play Again?");;
+                alert("Congatulations, you beat the computer! Play Again?");
+                //reset score element after win
+                location.reload();
                 } else if (compScore === 5) {
                 alert("Sorry, the computer beat you. Try again?");
+                //reset score element after win
+                location.reload();
                 } else {
                 writeWin("The player has " + playerScore + " points and the computer has " + compScore + " points.");
-                
                 }
             } 
         }
