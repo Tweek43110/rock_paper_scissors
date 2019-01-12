@@ -8,35 +8,41 @@
             <button id="rock">Rock</button>
             <button id="paper">Paper</button>
             <button id="scissors">Scissors</button>
-            <div class ="score"></div>
+            <div id="score"></div>
         </div>
 
 
 
         <script>
+
+            //Add new ui content below
         
             let compScore = 0;
             let playerScore = 0;
             let playerSelection = "";
+
+            //Used in place of console.log to write message out to HTML
+            function writeScore(score) {
+                let scoreMessage = document.getElementById('score');
+                scoreMessage.innerHTML = score;
+            }
             
             rock.addEventListener('click', () => {
                 playerSelection = 'rock';
                 let computerSelection = computerPlay();
-                console.log(playRound(playerSelection, computerSelection));
+                writeScore(playRound(playerSelection, computerSelection));
             });
             paper.addEventListener('click', () => {
                 playerSelection = 'paper';
                 let computerSelection = computerPlay();
-                console.log(playRound(playerSelection, computerSelection));
+                writeScore(playRound(playerSelection, computerSelection));
             });
             scissors.addEventListener('click', () => {
                 playerSelection = 'scissors';
                 let computerSelection = computerPlay();
-                console.log(playRound(playerSelection, computerSelection));
+                writeScore(playRound(playerSelection, computerSelection));
             });
 
-
-            
             // Random number generator for computer answer selection
             function computerPlay() {
                 const computerAnswer = Math.ceil(Math.random() * 3);
