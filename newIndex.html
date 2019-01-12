@@ -8,41 +8,55 @@
             <button id="rock">Rock</button>
             <button id="paper">Paper</button>
             <button id="scissors">Scissors</button>
-            <div id="score"></div>
+            <div id="score-container">
+                <p id="score"></p>
+                <p id="win"></p>
+            </div>
         </div>
 
 
 
         <script>
-
-            //Add new ui content below
-        
+        //Add new ui content below
+        function game() {
+            let playerSelection = "";
             let compScore = 0;
             let playerScore = 0;
-            let playerSelection = "";
 
             //Used in place of console.log to write message out to HTML
             function writeScore(score) {
                 let scoreMessage = document.getElementById('score');
                 scoreMessage.innerHTML = score;
             }
-            
+
+            function writeWin(win) {
+                let winEvent = document.getElementById('win');
+                winEvent.innerHTML = win;
+            }
+
+            //Event listeners on buttons
             rock.addEventListener('click', () => {
-                playerSelection = 'rock';
-                let computerSelection = computerPlay();
-                writeScore(playRound(playerSelection, computerSelection));
+            let computerSelection = computerPlay();
+            writeScore(playRound('rock', computerSelection));
             });
             paper.addEventListener('click', () => {
-                playerSelection = 'paper';
                 let computerSelection = computerPlay();
-                writeScore(playRound(playerSelection, computerSelection));
+                writeScore(playRound('paper', computerSelection));
             });
             scissors.addEventListener('click', () => {
-                playerSelection = 'scissors';
                 let computerSelection = computerPlay();
-                writeScore(playRound(playerSelection, computerSelection));
-            });
+                writeScore(playRound('scissors', computerSelection));
+            });  
 
+            //Displays current score or round win message
+            if (playerScore === 5) {
+            alert("Congatulations, you beat the computer! Play Again?");;
+            } else if (compScore === 5) {
+            alert("Sorry, the computer beat you. Try again?");
+            } else {
+            writeWin("The player has " + playerScore + " points and the computer has " + compScore + " points.");
+            } 
+            
             // Random number generator for computer answer selection
             function computerPlay() {
                 const computerAnswer = Math.ceil(Math.random() * 3);
@@ -81,28 +95,8 @@
                     return errorMessage;
                 } 
             }
-        
-            /* // plays game until player or computer score reaches 5
-            function game() {
-                while (playerScore <= 5 || compScore <= 5) {
-                    let playerSelection = prompt("Choose rock, paper or scissors:");
-                    playerSelection = playerSelection.toLowerCase();
-                    let computerSelection = computerPlay();
-                    console.log(playRound(playerSelection, computerSelection));
-
-                //Displays current score or round win message
-                if (playerScore === 5) {
-                    alert("Congatulations, you beat the computer! Play Again?");;
-                } else if (compScore === 5) {
-                    alert("Sorry, the computer beat you. Try again?");
-                } else {
-                    console.log("The player has " + playerScore + " points and the computer has " + compScore + " points.");
-                }
-                }
-
-            } 
-
-            game(); */
+        }
+        game();
         </script>
     </body>
 </html>
